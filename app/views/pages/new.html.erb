@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="text-center mb-4">New Game</h1>
+      
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title mb-3">Your letters:</h5>
+          <ul class="list-inline">
+            <% @letters.each do |letter| %>
+              <li class="list-inline-item">
+                <span class="badge bg-primary fs-3 px-3 py-2"><%= letter %></span>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-3">What is the longest word you can find?</h5>
+          <form action="/score" method="post" data-turbo="false">
+            <div class="mb-3">
+              <input type="text" id="word" name="word" class="form-control form-control-lg" placeholder="Enter your word" autofocus required>
+            </div>
+            <%= hidden_field_tag :letters, @letters.join(' ') %>
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <button type="submit" class="btn btn-success btn-lg w-100">Play</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="text-center mb-4">Result</h1>
+
+      <div class="card mb-4">
+        <div class="card-body text-center">
+          <h2 class="display-4 mb-3"><%= @word %></h2>
+
+          <% if @english_word && @included %>
+            <div class="alert alert-success">
+              <h4 class="alert-heading">
+                <i>✅</i> Congratulations!
+              </h4>
+              <p class="mb-0"><strong><%= @word %></strong> is a valid English word!</p>
+            </div>
+          <% elsif !@included %>
+            <div class="alert alert-danger">
+              <h4 class="alert-heading">
+                <i>❌</i> Sorry!
+              </h4>
+              <p class="mb-0">The word <strong><%= @word %></strong> can't be built out of <%= @letters.join(', ') %></p>
+            </div>
+          <% else %>
+            <div class="alert alert-warning">
+              <h4 class="alert-heading">
+                <i>❌</i> Not in the dictionary!
+              </h4>
+              <p class="mb-0"><strong><%= @word %></strong> is not a valid English word</p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <%= link_to "Play again", new_path, class: "btn btn-primary btn-lg w-100" %>
+    </div>
+  </div>
+</div>
